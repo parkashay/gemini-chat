@@ -12,7 +12,7 @@ import { ChatMessageList } from "@/components/ui/chat/chat-message-list";
 import MessageLoading from "@/components/ui/chat/message-loading";
 import { SCRAPING_FLAG } from "@/lib/constants";
 import { Message } from "@/lib/types";
-import { CopyIcon, CornerDownLeft, RefreshCcw, Sparkles, User } from "lucide-react";
+import { CopyIcon, RefreshCcw, SendHorizonal, Sparkles, User } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
@@ -195,26 +195,23 @@ export default function ChatPage() {
             const inputValue = inputRef?.current?.value;
             handleSend(inputValue);
           }}
-          className="relative rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"
+          className="relative flex items-center rounded-lg border focus-within:ring-1 focus-within:ring-ring p-2 gap-2"
         >
           <ChatInput
             ref={inputRef}
             onKeyDown={handleKeyDown}
             onChange={handleInputChange}
             placeholder="Type your message here..."
-            className="resize-none rounded-lg bg-background border-0 p-3 shadow-none focus-visible:ring-0"
+            className="resize-none rounded-lg border-0 p-3 shadow-none focus-visible:ring-0"
           />
-          <div className="flex items-center p-3 pt-0">
-            <Button
-              disabled={!input || isLoading}
-              type="submit"
-              size="sm"
-              className="ml-auto gap-1.5"
-            >
-              Send Message
-              <CornerDownLeft className="size-3.5" />
-            </Button>
-          </div>
+          <Button
+            disabled={!input || isLoading}
+            type="submit"
+            variant="ghost"
+            className="cursor-pointer !h-full py-4"
+          >
+            <SendHorizonal className="size-8" />
+          </Button>
         </form>
       </div>
     </div>
