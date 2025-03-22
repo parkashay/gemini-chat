@@ -3,6 +3,7 @@ import type { BlankEnv, BlankInput } from "hono/types";
 import type { ChatInput } from "../types/Chat.js";
 import { scrapeWebsite } from "../services/scrape-website.js";
 import { aiModel } from "../services/gemini.js";
+import { SCRAPING_FLAG } from "../constants/constants.js";
 
 export const chatController = async (c: Context<BlankEnv, "/chat", BlankInput>) => {
   c.header("Content-Type", "text/event-stream");
@@ -20,7 +21,7 @@ export const chatController = async (c: Context<BlankEnv, "/chat", BlankInput>) 
     async start(controller) {
       if (urls.length > 0) {
         for (let i = 0; i < urls.length; i++) {
-          controller.enqueue(`data: scraping link ${i + 1}/${urls.length}\n\n`);
+          controller.enqueue(`data: scraping link ${i + 1}/${urls.length} ${SCRAPING_FLAG}\n\n`);
           const content = await scrapeWebsite(urls[i]);
           if (content) {
             scrapedContent += `\nContent from ${urls[i]}:\n${content}\n\n`;
