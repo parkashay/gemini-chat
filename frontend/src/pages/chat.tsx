@@ -6,14 +6,14 @@ import { Button } from "@/components/ui/button";
 import { AIChatMessage } from "@/components/chat/ai-chat";
 import { ChatActions } from "@/components/chat/data";
 import { ScrapingIndicator } from "@/components/chat/scraping-indicator";
+import { ChatBubble, ChatBubbleAction, ChatBubbleMessage } from "@/components/ui/chat/chat-bubble";
 import { ChatInput } from "@/components/ui/chat/chat-input";
 import { ChatMessageList } from "@/components/ui/chat/chat-message-list";
 import MessageLoading from "@/components/ui/chat/message-loading";
 import { SCRAPING_FLAG } from "@/lib/constants";
 import { Message } from "@/lib/types";
-import { CopyIcon, CornerDownLeft, Mic, Paperclip, RefreshCcw, Sparkles, User } from "lucide-react";
+import { CopyIcon, CornerDownLeft, RefreshCcw, Sparkles, User } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { ChatBubble, ChatBubbleAction, ChatBubbleMessage } from "@/components/ui/chat/chat-bubble";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -96,7 +96,6 @@ export default function ChatPage() {
         messages.forEach((message) => {
           const text = message.replace("data:", "").trim();
           if (!text) return;
-          console.log({ text });
           if (text.endsWith(SCRAPING_FLAG)) {
             setScraping(text);
             return;
@@ -206,16 +205,6 @@ export default function ChatPage() {
             className="resize-none rounded-lg bg-background border-0 p-3 shadow-none focus-visible:ring-0"
           />
           <div className="flex items-center p-3 pt-0">
-            <Button variant="ghost" size="icon">
-              <Paperclip className="size-4" />
-              <span className="sr-only">Attach file</span>
-            </Button>
-
-            <Button variant="ghost" size="icon">
-              <Mic className="size-4" />
-              <span className="sr-only">Use Microphone</span>
-            </Button>
-
             <Button
               disabled={!input || isLoading}
               type="submit"
