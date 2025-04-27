@@ -110,7 +110,9 @@ The backend requires an environment variable to access the Gemini API.
 
 The project has the following directory structure:
 
-gemini-chat/├── backend/ # Express server (handles API and SSE)└── frontend/ # React client (chat interface)
+gemini-chat/
+├── backend/ # Express server (handles API and SSE)
+└── frontend/ # React client (chat interface)
 
 ## Contributing
 
