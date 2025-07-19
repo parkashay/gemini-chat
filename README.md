@@ -2,7 +2,6 @@
 
 A real-time AI chat application built with the **Gemini API** and **Server-Sent Events (SSE)** to stream responses dynamically.
 
-🚀 [Live Demo](https://master.d1i0bq0ta6os8r.amplifyapp.com/chat/)
 
 ---
 
